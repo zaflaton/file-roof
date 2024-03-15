@@ -1,15 +1,25 @@
-import { OrganizationSwitcher, SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
-import Link from "next/link";
-import { Button } from "../ui/button";
+import { Button } from '@/components/ui/button'
+import {
+  OrganizationSwitcher,
+  SignInButton,
+  SignedIn,
+  SignedOut,
+  UserButton,
+} from '@clerk/nextjs'
+import Image from 'next/image'
+import Link from 'next/link'
 
 export function Header() {
   return (
-    <div className="border-b">
-      <div className="container flex justify-between items-center py-4 bg-neutral-100">
-        <Link href='/'>File Roof</Link>
+    <div className="relative z-10 border-b bg-gray-50 py-4">
+      <div className="container mx-auto flex items-center justify-between">
+        <Link href="/" className="flex items-center gap-2 text-xl text-black">
+          <Image src="/logo.png" width="50" height="50" alt="file drive logo" />
+          FileRoof
+        </Link>
 
         <SignedIn>
-          <Button variant={"outline"}>
+          <Button variant={'outline'}>
             <Link href="/dashboard/files">Your Files</Link>
           </Button>
         </SignedIn>
@@ -17,7 +27,6 @@ export function Header() {
         <div className="flex gap-2">
           <OrganizationSwitcher />
           <UserButton />
-
           <SignedOut>
             <SignInButton>
               <Button>Sign In</Button>
@@ -26,5 +35,5 @@ export function Header() {
         </div>
       </div>
     </div>
-  );
+  )
 }
